@@ -1,20 +1,99 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
+import { SelectCountry } from 'react-native-element-dropdown';
 
-export default function App() {
+const local_data = [
+  {
+    value: '1',
+    lable: 'Country 1',
+    image: {
+      uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
+    },
+  },
+  {
+    value: '2',
+    lable: 'Country 2',
+    image: {
+      uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
+    },
+  },
+  {
+    value: '3',
+    lable: 'Country 3',
+    image: {
+      uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
+    },
+  },
+  {
+    value: '4',
+    lable: 'Country 4',
+    image: {
+      uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
+    },
+  },
+  {
+    value: '5',
+    lable: 'Country 5',
+    image: {
+      uri: 'https://www.vigcenter.com/public/all/images/default-image.jpg',
+    },
+  },
+];
+
+const SelectCountryScreen = _props => {
+  const [country, setCountry] = useState('1');
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SelectCountry
+      style={styles.dropdown}
+      selectedTextStyle={styles.selectedTextStyle}
+      placeholderStyle={styles.placeholderStyle}
+      imageStyle={styles.imageStyle}
+      inputSearchStyle={styles.inputSearchStyle}
+      iconStyle={styles.iconStyle}
+      search
+      maxHeight={200}
+      value={country}
+      data={local_data}
+      valueField="value"
+      labelField="lable"
+      imageField="image"
+      placeholder="Select country"
+      searchPlaceholder="Search..."
+      onChange={e => {
+        setCountry(e.value);
+      }}
+    />
   );
-}
+};
+
+export default SelectCountryScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  dropdown: {
+    marginTop: 200,
+    margin: 16,
+    height: 50,
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5,
+  },
+  imageStyle: {
+    width: 24,
+    height: 24,
+  },
+  placeholderStyle: {
+    fontSize: 16,
+  },
+  selectedTextStyle: {
+    fontSize: 16,
+    marginLeft: 8,
+  },
+  iconStyle: {
+    width: 20,
+    height: 20,
+  },
+  inputSearchStyle: {
+    height: 40,
+    fontSize: 16,
   },
 });
